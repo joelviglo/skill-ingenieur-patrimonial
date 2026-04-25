@@ -1,7 +1,7 @@
 # 🔒 SÉCURITÉ — Données client
 # Ne JAMAIS commiter les cas mémorisés réels (même anonymisés, on ne prend pas le risque)
-skill/memoire/cas-*.md
-skill/memoire/*.json
+memoire/cas-*.md
+memoire/*.json
 
 # macOS
 .DS_Store

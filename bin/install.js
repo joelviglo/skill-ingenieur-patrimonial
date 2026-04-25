@@ -2,8 +2,8 @@
 /**
  * Installer pour le skill ingenieur-patrimonial.
  *
- * Copie le contenu de `./skill/` vers `~/.claude/skills/ingenieur-patrimonial/`
- * (ou un chemin personnalisé via la variable d'environnement CLAUDE_SKILLS_DIR).
+ * Copie le contenu du repo (avec exclusions techniques) vers
+ * `~/.claude/skills/ingenieur-patrimonial/` (ou un chemin personnalisé).
  *
  * Usage :
  *   npx github:joelviglo/skill-ingenieur-patrimonial install
@@ -11,9 +11,9 @@
  *   node bin/install.js
  *
  * Options :
- *   --force    : écrase la cible existante (sinon : refus si la cible existe)
- *   --dry-run  : affiche ce qui serait fait sans rien copier
- *   --target=PATH : chemin cible alternatif
+ *   --force        : écrase la cible existante
+ *   --dry-run      : affiche ce qui serait fait sans rien copier
+ *   --target=PATH  : chemin cible alternatif
  */
 
 const fs = require('fs');
@@ -31,8 +31,26 @@ const SKILLS_DIR =
   process.env.CLAUDE_SKILLS_DIR ||
   path.join(os.homedir(), '.claude', 'skills');
 
-const SOURCE_DIR = path.resolve(__dirname, '..', 'skill');
+// La racine du repo (le SKILL.md y est).
+const SOURCE_DIR = path.resolve(__dirname, '..');
 const TARGET_DIR = path.join(SKILLS_DIR, SKILL_NAME);
+
+// Fichiers/dossiers de la racine du repo qui NE doivent pas être copiés vers
+// ~/.claude/skills/. Tout ce qui est technique (build, doc repo, scripts).
+const EXCLUDE_NAMES = new Set([
+  '.git',
+  '.github',
+  '.gitignore',
+  '.gitattributes',
+  'node_modules',
+  '.DS_Store',
+  'README.md',
+  'LICENSE',
+  'package.json',
+  'package-lock.json',
+  'bin',
+  'PROJET-CLAUDE-AI-INSTRUCTIONS.md', // optionnel à exclure : c'est un guide humain
+]);
 
 function log(emoji, msg) {
   console.log(`${emoji}  ${msg}`);
@@ -43,12 +61,14 @@ function err(msg) {
   process.exit(1);
 }
 
-function copyRecursive(src, dest) {
+function copyRecursive(src, dest, depth = 0) {
   const stat = fs.statSync(src);
   if (stat.isDirectory()) {
     if (!DRY_RUN) fs.mkdirSync(dest, { recursive: true });
     for (const entry of fs.readdirSync(src)) {
-      copyRecursive(path.join(src, entry), path.join(dest, entry));
+      // À la racine seulement, on filtre via EXCLUDE_NAMES.
+      if (depth === 0 && EXCLUDE_NAMES.has(entry)) continue;
+      copyRecursive(path.join(src, entry), path.join(dest, entry), depth + 1);
     }
   } else {
     if (!DRY_RUN) fs.copyFileSync(src, dest);
@@ -76,12 +96,19 @@ if (!fs.existsSync(SOURCE_DIR)) {
   err(`Dossier source introuvable : ${SOURCE_DIR}`);
 }
 
+if (!fs.existsSync(path.join(SOURCE_DIR, 'SKILL.md'))) {
+  err(
+    `SKILL.md introuvable à la racine de la source.\n` +
+      `   → Vérifie l'intégrité du clone du repo.`
+  );
+}
+
 if (fs.existsSync(TARGET_DIR)) {
   if (!FORCE) {
     err(
       `Cible déjà présente : ${TARGET_DIR}\n` +
         `   → utilise --force pour écraser, ou --target=PATH pour une cible alternative.\n` +
-        `   ⚠️  Avec --force, le contenu de skill/memoire/ existant sera SUPPRIMÉ.\n` +
+        `   ⚠️  Avec --force, le contenu de memoire/ existant sera SUPPRIMÉ.\n` +
         `      Si tu as des cas mémorisés à préserver, sauvegarde-les d'abord.`
     );
   }
@@ -100,5 +127,5 @@ log('💡', 'Vérifie l\'installation :');
 console.log(`     ls "${TARGET_DIR}"`);
 console.log('');
 log('🔄', 'Pour mettre à jour à une nouvelle version :');
-console.log(`     npx github:joelviglo/skill-ingenieur-patrimonial install --force`);
+console.log(`     npx -y github:joelviglo/skill-ingenieur-patrimonial install --force`);
 console.log('');
