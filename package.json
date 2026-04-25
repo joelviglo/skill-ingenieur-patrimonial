@@ -13,6 +13,7 @@
     "node": ">=18"
   },
   "bin": {
+    "skill-ingenieur-patrimonial": "./bin/cli.js",
     "ingenieur-patrimonial-install": "./bin/install.js",
     "ingenieur-patrimonial-uninstall": "./bin/uninstall.js"
   },
