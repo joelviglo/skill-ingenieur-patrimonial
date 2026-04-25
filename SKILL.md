@@ -163,14 +163,21 @@ Livrables écrits (mémo notaire, clause bénéficiaire, brief avocat, email, pa
 
 Devis prospect via ICD (Indice de Complexité du Dossier).
 
-**Déroulé** :
-1. Calcul ICD selon `references/grille-icd.md`
-2. Tranche tarifaire
-3. Majorations/réductions
-4. Fourchette HT + durée + équipe
-5. 3-5 questions à clarifier avant devis formel
+⚠️ **La grille tarifaire LynkRise est confidentielle.** Elle n'est PAS dans le repo public.
 
-**Règle d'or** : en cas de doute, fourchette large + "à préciser en RDV découverte". Jamais un chiffre définitif sans les éléments.
+**Source de la grille** :
+1. **Source primaire (chiffres réels)** : `$VAULT_ROOT/01_Projets/ingenierie-patrimoniale/offre-de-service/grille-tarification-detaillee.md` — vault local Joel uniquement
+2. Si le vault n'est pas accessible : demander à Joel de fournir la grille en contexte avant tout chiffrage. **Ne jamais inventer des chiffres.**
+
+**Déroulé** :
+1. Lire la grille depuis le vault local (ou demander à Joel)
+2. Calcul ICD : 9 critères × 0-3 points (patrimoine, enfants, structures sociétaires, fiscalité, situation familiale, dispositifs actifs, projet, international, urgence)
+3. Tranche tarifaire correspondante
+4. Majorations / réductions (urgence +20%, international +15-30%, client EC fidèle -10%, etc.)
+5. Fourchette HT + durée estimée + composition équipe
+6. 3-5 questions à clarifier avant devis formel
+
+**Règle d'or** : en cas de doute, fourchette large + "à préciser en RDV découverte". Jamais un chiffre définitif sans les éléments. Et **jamais** de chiffre tarifaire si la grille du vault n'est pas accessible.
 
 ---
 
@@ -183,7 +190,7 @@ Devis prospect via ICD (Indice de Complexité du Dossier).
 **Charger les fichiers à la demande** :
 - Quand tu as besoin de citer une référence légale → lire la section correspondante de `references/references-legales.md`
 - Quand tu détectes un red flag potentiel → consulter `references/vigilance.md`
-- Quand tu chiffres une mission → lire `references/grille-icd.md`
+- Quand tu chiffres une mission → lire `$VAULT_ROOT/01_Projets/ingenierie-patrimoniale/offre-de-service/grille-tarification-detaillee.md` (vault local — grille tarifaire LynkRise confidentielle, hors repo public)
 - Quand le profil client ressemble à un archétype → `references/cas-patterns.md`
 
 **Synthèse des 5 règles les plus critiques à garder en tête en permanence** (pas besoin de lire un fichier pour ça) :
@@ -202,7 +209,7 @@ Devis prospect via ICD (Indice de Complexité du Dossier).
 | `references/vigilance.md` | Pièges + 10 red flags | Quand un red flag est suspecté |
 | `references/fiches-map.md` | Quand utiliser chaque fiche du vault | Si besoin d'approfondissement technique |
 | `references/cas-patterns.md` | 4 archétypes clients | Si match avec un archétype |
-| `references/grille-icd.md` | Chiffrage rapide | MODE CHIFFRAGE |
+| `$VAULT_ROOT/.../grille-tarification-detaillee.md` | Chiffrage tarifaire | MODE CHIFFRAGE — vault local uniquement (confidentiel) |
 | `templates/memo-preconisation.md` | Structure 7 blocs d'une préconisation | MODE RÉDACTION / DIAGNOSTIC |
 | `templates/simulation-*.md` | Canevas de calcul IFI/Dutreil/démembrement | MODE SIMULATION |
 | `templates/chiffrage-mission.md` | Workflow devis | MODE CHIFFRAGE |

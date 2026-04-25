@@ -1,29 +1,56 @@
-PROPRIETARY LICENSE — All Rights Reserved
-==========================================
+PROPRIETARY LICENSE — Source-Available, All Rights Reserved
+============================================================
 
 Copyright (c) 2026 Joel Viglo / LynkRise
 
-Ce dépôt et son contenu (le « Skill ») sont la propriété exclusive de
-Joel Viglo et du cabinet LynkRise. Le contenu est confidentiel et
-couvert par le secret professionnel de l'expert-comptable
-(art. 226-13 du Code pénal français).
+Le contenu de ce dépôt (le « Skill ») est la propriété exclusive de
+Joel Viglo et du cabinet LynkRise. Le code source est rendu PUBLIC
+uniquement pour permettre l'installation du Skill sur des plateformes
+tierces compatibles (Claude Code, Paperclip, etc.) qui n'autorisent
+que les dépôts publics. La publicité du dépôt n'emporte AUCUN droit
+d'utilisation, de copie, ou de réutilisation du contenu.
 
-Aucune partie de ce dépôt ne peut être :
+DROITS RÉSERVÉS
+---------------
 
-- copiée, reproduite, distribuée, ou publiée,
-- utilisée à des fins commerciales,
-- intégrée dans un produit tiers,
-- partagée avec un tiers non autorisé,
+Sont expressément INTERDITS sans accord écrit préalable et exprès de
+Joel Viglo / LynkRise :
 
-sans l'accord écrit préalable et exprès de Joel Viglo / LynkRise.
+- la copie, la reproduction, partielle ou totale, du contenu ;
+- la distribution, la publication, la republication, sous quelque
+  forme que ce soit ;
+- l'utilisation à des fins commerciales par un tiers ;
+- l'intégration du contenu dans un produit, service, ou outil tiers ;
+- la création d'œuvres dérivées (forks, adaptations, traductions
+  vers d'autres langages ou frameworks) destinées à un usage par un
+  tiers ;
+- l'usage du nom LynkRise, de la posture ou de la méthodologie pour
+  toute activité commerciale.
 
-L'accès en lecture est strictement limité aux personnes autorisées par
-l'auteur. Toute utilisation non autorisée constitue une violation de
-la propriété intellectuelle et du secret professionnel et pourra faire
-l'objet de poursuites.
+DROITS ACCORDÉS (très limités)
+-------------------------------
+
+Aucun droit n'est accordé au public. Le simple visionnage du contenu
+via l'interface GitHub est toléré pour des raisons techniques
+(indexation par les plateformes tierces, audit de sécurité avant
+installation). Aucun usage actif n'est permis.
+
+CONFIDENTIALITÉ ET SECRET PROFESSIONNEL
+----------------------------------------
+
+Bien que le Skill ne contienne pas de données client, son contenu
+reste couvert par le devoir de confidentialité du cabinet
+d'expertise-comptable et par le secret professionnel de
+l'expert-comptable (article 226-13 du Code pénal français). La
+grille tarifaire et les éléments de pratique professionnelle
+spécifiques au cabinet ne figurent PAS dans ce dépôt et restent
+strictement confidentiels.
+
+Toute personne souhaitant utiliser tout ou partie du contenu doit
+obtenir l'accord écrit préalable et exprès de l'auteur.
 
 LIMITATION DE RESPONSABILITÉ
-----------------------------
+-----------------------------
 
 Le Skill est fourni « tel quel », sans garantie d'aucune sorte. Il
 constitue un outil de travail interne destiné à appuyer la production
@@ -32,7 +59,15 @@ fiscaliste. Les chiffres, références légales et préconisations qu'il
 contient doivent être vérifiés à la date de chaque livrable client.
 
 Le Skill ne constitue pas un conseil en investissement financier
-(art. L541-1 du Code monétaire et financier). Aucune partie ne peut
-servir à commercialiser un produit financier.
+(article L. 541-1 du Code monétaire et financier). Aucune partie ne
+peut servir à commercialiser un produit financier.
 
-Pour toute question : Joel Viglo (jvigameplay99@gmail.com).
+POURSUITES
+----------
+
+Toute utilisation non autorisée constitue une violation de la
+propriété intellectuelle et pourra faire l'objet de poursuites
+civiles et pénales devant les juridictions françaises compétentes.
+
+Pour toute question ou demande d'autorisation : Joel Viglo
+(jvigameplay99@gmail.com).

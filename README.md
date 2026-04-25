@@ -1,8 +1,9 @@
 # skill-ingenieur-patrimonial
 
-> **Repo PRIVÉ.** Skill Claude pour l'ingénierie patrimoniale LynkRise.
-> Couvert par le secret professionnel de l'expert-comptable (art. 226-13 CP).
-> Aucune partie ne peut être partagée, copiée ou diffusée sans l'accord exprès de Joel Viglo.
+> **Repo public, contenu propriétaire LynkRise.**
+> Source-available pour permettre l'installation depuis des plateformes tierces (Claude Code, Paperclip) qui n'autorisent que les dépôts publics.
+> **Toute reproduction, copie ou utilisation par un tiers est interdite** — voir [LICENSE](./LICENSE).
+> La grille tarifaire LynkRise et les données client ne figurent PAS dans ce dépôt.
 
 ## C'est quoi ?
 
@@ -140,10 +141,18 @@ Voir le `CHANGELOG.md` pour l'historique des versions.
 
 ## Sécurité et confidentialité
 
-- ✅ Repo **PRIVÉ** sur GitHub
+- ✅ Repo **public** uniquement pour permettre l'installation via Paperclip / Claude Code (qui n'authentifient pas GitHub)
+- ✅ Contenu **propriétaire LynkRise** — voir [LICENSE](./LICENSE) pour les restrictions
+- ✅ **Aucune donnée client réelle** dans le repo
+- ✅ **Grille tarifaire LynkRise hors repo** : reste dans le vault local privé de Joel
 - ✅ `.gitignore` exclut tout cas mémorisé réel (`memoire/cas-*.md`)
-- ✅ Aucune donnée client réelle dans le repo
 - ✅ Si tu installes le skill, **ton** dossier `memoire/` reste local et n'est jamais poussé
+
+### Pourquoi le repo est public
+
+Paperclip et certains clients Claude Code n'envoient aucun token GitHub lors de l'import de skills (vérifié dans le code source : `server/src/services/github-fetch.ts` utilise un `fetch()` brut sans `Authorization`). Pour permettre l'import 1-clic, le repo doit donc être public.
+
+La LICENSE propriétaire compense en interdisant explicitement toute réutilisation par un tiers. Le repo est **source-available** mais **pas open-source**.
 
 **Si tu identifies une fuite de données dans un commit** : ouvre une issue privée immédiatement, et purge l'historique avec `git filter-repo`.
 
