@@ -1,0 +1,40 @@
+{
+  "name": "@joelviglo/skill-ingenieur-patrimonial",
+  "version": "1.1.0",
+  "description": "Skill Claude pour l'ingénierie patrimoniale LynkRise (expert-comptable fiscaliste). Privé.",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "Joel Viglo <jvigameplay99@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/joelviglo/skill-ingenieur-patrimonial.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "ingenieur-patrimonial-install": "./bin/install.js",
+    "ingenieur-patrimonial-uninstall": "./bin/uninstall.js"
+  },
+  "scripts": {
+    "install:skill": "node ./bin/install.js",
+    "uninstall:skill": "node ./bin/uninstall.js",
+    "test": "echo \"Run regression tests manually: see skill/tests/test-regression.md\""
+  },
+  "files": [
+    "skill/",
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skill",
+    "patrimoine",
+    "ingenierie-patrimoniale",
+    "fiscaliste",
+    "lynkrise",
+    "private"
+  ]
+}
