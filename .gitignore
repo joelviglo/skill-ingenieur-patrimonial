@@ -1,5 +1,8 @@
 # 🔒 SÉCURITÉ — Données client
 # Ne JAMAIS commiter les cas mémorisés réels (même anonymisés, on ne prend pas le risque)
+skills/*/memoire/cas-*.md
+skills/*/memoire/*.json
+# Garde l'ancienne forme aussi au cas où
 memoire/cas-*.md
 memoire/*.json
 

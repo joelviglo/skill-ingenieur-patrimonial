@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Installer pour le skill ingenieur-patrimonial.
+ * Installer pour le skill ingenieur-patrimonial (format plugin Cowork).
  *
- * Copie le contenu du repo (avec exclusions techniques) vers
+ * Copie le contenu de `skills/ingenieur-patrimonial/` vers
  * `~/.claude/skills/ingenieur-patrimonial/` (ou un chemin personnalisé).
  *
  * Usage :
- *   npx github:joelviglo/skill-ingenieur-patrimonial install
+ *   npx -y github:joelviglo/skill-ingenieur-patrimonial install
  *   ou
  *   node bin/install.js
  *
@@ -14,6 +14,11 @@
  *   --force        : écrase la cible existante
  *   --dry-run      : affiche ce qui serait fait sans rien copier
  *   --target=PATH  : chemin cible alternatif
+ *
+ * Note : ce script sert pour l'install via npx/CLI. Pour Cowork, l'import
+ * se fait via l'UI "Customize" qui charge directement le plugin.json à la
+ * racine du repo (aucune intervention de ce script). Pour Claude Code, on
+ * peut aussi passer par `claude plugin install` qui lit le plugin.json.
  */
 
 const fs = require('fs');
@@ -31,26 +36,11 @@ const SKILLS_DIR =
   process.env.CLAUDE_SKILLS_DIR ||
   path.join(os.homedir(), '.claude', 'skills');
 
-// La racine du repo (le SKILL.md y est).
-const SOURCE_DIR = path.resolve(__dirname, '..');
+// Le contenu du skill vit dans skills/ingenieur-patrimonial/ pour respecter
+// le format plugin Cowork. Pour npx install, on copie ce sous-dossier.
+const REPO_ROOT = path.resolve(__dirname, '..');
+const SOURCE_DIR = path.join(REPO_ROOT, 'skills', SKILL_NAME);
 const TARGET_DIR = path.join(SKILLS_DIR, SKILL_NAME);
-
-// Fichiers/dossiers de la racine du repo qui NE doivent pas être copiés vers
-// ~/.claude/skills/. Tout ce qui est technique (build, doc repo, scripts).
-const EXCLUDE_NAMES = new Set([
-  '.git',
-  '.github',
-  '.gitignore',
-  '.gitattributes',
-  'node_modules',
-  '.DS_Store',
-  'README.md',
-  'LICENSE',
-  'package.json',
-  'package-lock.json',
-  'bin',
-  'PROJET-CLAUDE-AI-INSTRUCTIONS.md', // optionnel à exclure : c'est un guide humain
-]);
 
 function log(emoji, msg) {
   console.log(`${emoji}  ${msg}`);
@@ -61,14 +51,12 @@ function err(msg) {
   process.exit(1);
 }
 
-function copyRecursive(src, dest, depth = 0) {
+function copyRecursive(src, dest) {
   const stat = fs.statSync(src);
   if (stat.isDirectory()) {
     if (!DRY_RUN) fs.mkdirSync(dest, { recursive: true });
     for (const entry of fs.readdirSync(src)) {
-      // À la racine seulement, on filtre via EXCLUDE_NAMES.
-      if (depth === 0 && EXCLUDE_NAMES.has(entry)) continue;
-      copyRecursive(path.join(src, entry), path.join(dest, entry), depth + 1);
+      copyRecursive(path.join(src, entry), path.join(dest, entry));
     }
   } else {
     if (!DRY_RUN) fs.copyFileSync(src, dest);
@@ -93,12 +81,12 @@ if (DRY_RUN) log('🔍', 'Mode DRY-RUN : aucun fichier ne sera modifié');
 console.log('');
 
 if (!fs.existsSync(SOURCE_DIR)) {
-  err(`Dossier source introuvable : ${SOURCE_DIR}`);
+  err(`Dossier source introuvable : ${SOURCE_DIR}\n   → Le repo doit avoir la structure plugin Cowork (skills/${SKILL_NAME}/).`);
 }
 
 if (!fs.existsSync(path.join(SOURCE_DIR, 'SKILL.md'))) {
   err(
-    `SKILL.md introuvable à la racine de la source.\n` +
+    `SKILL.md introuvable dans ${SOURCE_DIR}.\n` +
       `   → Vérifie l'intégrité du clone du repo.`
   );
 }
